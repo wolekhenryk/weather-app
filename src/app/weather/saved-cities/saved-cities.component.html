@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="input-group mb-4">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter city name"
+      [(ngModel)]="city"
+      (keyup.enter)="addCityAndRefresh()"
+    />
+    <button class="btn btn-primary" (click)="addCityAndRefresh()">
+      Add City
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let weather of weathers">
+      <div class="card shadow h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title text-primary">
+            {{ weather?.location?.name }}
+          </h5>
+          <p class="small text-secondary mb-1">
+            {{ weather?.location?.country }}
+          </p>
+          <p class="card-text">
+            <strong>Temp:</strong> {{ weather?.current?.temp_c }} °C<br />
+            <strong>Condition:</strong> {{ weather?.current?.condition?.text
+            }}<br />
+            <strong>Humidity:</strong> {{ weather?.current?.humidity }}%<br />
+            <strong>Wind:</strong> {{ weather?.current?.wind_kph }} kph
+          </p>
+          <button
+            class="btn btn-sm btn-outline-danger mt-2"
+            (click)="removeCity(weather.location.name)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
