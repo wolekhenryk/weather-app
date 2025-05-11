@@ -6,10 +6,27 @@
       placeholder="Enter city name"
       [(ngModel)]="city"
       (keyup.enter)="addCityAndRefresh()"
+      (keyup)="onInputChange()"
     />
     <button class="btn btn-primary" (click)="addCityAndRefresh()">
       Add City
     </button>
+
+    <!-- Suggestion dropdown -->
+    <ul
+      class="list-group position-absolute w-100 bg-white border rounded shadow z-3"
+      style="top: 100%"
+      *ngIf="suggestions.length > 0"
+    >
+      <li
+        class="list-group-item list-group-item-action"
+        *ngFor="let suggestion of suggestions"
+        (click)="selectSuggestion(suggestion)"
+      >
+        {{ suggestion.name }}, {{ suggestion.country }}
+        <span *ngIf="suggestion.region">, {{ suggestion.region }} </span>
+      </li>
+    </ul>
   </div>
 
   <div class="row">

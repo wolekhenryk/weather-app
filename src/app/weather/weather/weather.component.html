@@ -34,7 +34,7 @@
       <div class="card shadow" *ngIf="weather">
         <div class="card-body text-center">
           <h2 class="card-title text-primary">
-            Weather in {{ weather?.location?.name }}
+            Current weather in {{ weather?.location?.name }}
           </h2>
           <p class="small text-secondary mb-1">
             Country: {{ weather?.location?.country }}
@@ -48,6 +48,10 @@
             <strong>Wind:</strong> {{ weather?.current?.wind_kph }} kph
           </p>
         </div>
+      </div>
+
+      <div class="card-shadow" *ngIf="weather">
+        <app-forecast [city]="city" [days]="days"></app-forecast>
       </div>
     </div>
   </div>

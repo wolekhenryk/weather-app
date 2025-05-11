@@ -35,4 +35,8 @@ export class SavedWeatherService {
       localStorage.setItem('savedCities', JSON.stringify(savedCities));
     }
   }
+
+  getAutocomplete(query: string): Observable<any[]> {
+    return this.weather.getAutocomplete(query);
+  }
 }

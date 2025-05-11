@@ -11,10 +11,17 @@ export class WeatherService {
     'https://api.weatherapi.com/v1/current.json';
   private baseAutocompleteUrl: string =
     'https://api.weatherapi.com/v1/search.json';
+  private baseForecastUrl: string =
+    'http://api.weatherapi.com/v1/forecast.json';
   constructor(private http: HttpClient) {}
 
   getWeather(city: string): Observable<any> {
     const url: string = `${this.baseCurrentWeatherUrl}?key=${this.apiKey}&q=${city}`;
+    return this.http.get<any>(url);
+  }
+
+  getForecast(city: string, days: number): Observable<any> {
+    const url: string = `${this.baseForecastUrl}?key=${this.apiKey}&q=${city}&days=${days}`;
     return this.http.get<any>(url);
   }
 

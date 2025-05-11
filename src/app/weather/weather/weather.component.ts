@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WeatherService } from '../weather.service';
+import { ForecastComponent } from '../forecast/forecast.component';
 
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ForecastComponent],
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css'],
 })
@@ -15,8 +16,11 @@ export class WeatherComponent implements OnInit {
   city: string = '';
   suggestions: any[] = [];
   debounceTimer: any;
+  days: number = 7;
 
   constructor(private weatherService: WeatherService) {}
+
+  @ViewChild(ForecastComponent) forecastComponent!: ForecastComponent;
 
   onInputChange(): void {
     if (this.debounceTimer) {
@@ -49,6 +53,8 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getWeather(city).subscribe((data) => {
       this.weather = data;
     });
+
+    this.forecastComponent.getForecast(city, this.days);
   }
 
   getAutoComplete(query: string): void {
