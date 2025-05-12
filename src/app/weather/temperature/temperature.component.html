@@ -1,0 +1,23 @@
+<div class="d-flex align-items-center gap-2">
+  <!-- Min temperature -->
+  <div class="text-muted" style="min-width: 2.5rem">{{ minTemp }}</div>
+
+  <!-- Progress bar -->
+  <div class="flex-grow-1">
+    <div
+      class="progress"
+      style="height: 1rem"
+      role="progressbar"
+      aria-label="Temperature bar"
+    >
+      <div class="progress-bar" [style.width.%]="avgPercent">
+        {{ avgTemp }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Max temperature -->
+  <div class="text-muted" style="min-width: 2.5rem; text-align: right">
+    {{ maxTemp }}
+  </div>
+</div>

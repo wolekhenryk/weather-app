@@ -1,1 +1,45 @@
-<p>forecast works! Days: {{ days }}, city: {{ city }}</p>
+<!-- <p>forecast works! Days: {{ days }}, city: {{ city }}</p> -->
+
+<div class="card shadow mt-3" *ngIf="forecast">
+  <div class="card-body text-center">
+    <h2 class="card-title text-primary">
+      Forecast for {{ forecast?.location?.name }}
+    </h2>
+    <table class="table table-striped w-100 align-middle text-center">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Temp (°C)</th>
+          <th>UV index</th>
+          <th>Wind</th>
+          <th>Condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let day of forecast?.forecast?.forecastday">
+          <td>{{ day.date }}</td>
+          <td>
+            <app-temperature
+              [avgTemp]="day.day?.avgtemp_c"
+              [maxTemp]="day.day?.maxtemp_c"
+              [minTemp]="day.day?.mintemp_c"
+            />
+          </td>
+          <td>{{ day.day?.uv }}</td>
+          <td>{{ (day.day?.maxwind_kph / 3.6).toFixed(1) }} m/s</td>
+          <td
+            class="d-flex flex-column align-items-center justify-content-center text-center"
+            style="min-width: 120px"
+          >
+            <img
+              [src]="day.day?.condition?.icon"
+              [alt]="day.day?.condition?.text"
+              style="width: 32px; height: 32px; object-fit: contain"
+            />
+            <small class="mt-1">{{ day.day?.condition?.text }}</small>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

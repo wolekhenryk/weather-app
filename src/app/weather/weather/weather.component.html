@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col">
       <div class="input-group mb-3 position-relative">
         <input
           type="text"
@@ -31,28 +31,38 @@
         </ul>
       </div>
 
-      <div class="card shadow" *ngIf="weather">
-        <div class="card-body text-center">
-          <h2 class="card-title text-primary">
-            Current weather in {{ weather?.location?.name }}
-          </h2>
-          <p class="small text-secondary mb-1">
-            Country: {{ weather?.location?.country }}
-          </p>
-          <p class="card-text">
-            <strong>Temperature:</strong>
-            {{ weather?.current?.temp_c }} °C<br />
-            <strong>Condition:</strong> {{ weather?.current?.condition?.text
-            }}<br />
-            <strong>Humidity:</strong> {{ weather?.current?.humidity }}%<br />
-            <strong>Wind:</strong> {{ weather?.current?.wind_kph }} kph
-          </p>
+      <!-- Add d-flex and align-items-stretch to the row -->
+      <div class="row d-flex justify-content-center align-items-stretch">
+        <div class="col-md-6">
+          <div class="card shadow h-100" *ngIf="weather">
+            <!-- Add h-100 to the card to stretch it -->
+            <div class="card-body text-center">
+              <h2 class="card-title text-primary">Temperature</h2>
+              <div>
+                <h3 class="card-text">{{ weather?.current?.temp_c }} °C</h3>
+                <p class="card-text">
+                  <strong>Feels like</strong>
+                  {{ weather?.current?.feelslike_c }} °C
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow h-100" *ngIf="weather">
+            <!-- Add h-100 to the card to stretch it -->
+            <div class="card-body text-center">
+              <h2 class="card-title text-primary">Condition</h2>
+              <img
+                [src]="weather?.current?.condition?.icon"
+                [alt]="weather?.current?.condition?.text"
+                class="img-fluid mb-3"
+              />
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="card-shadow" *ngIf="weather">
-        <app-forecast [city]="city" [days]="days"></app-forecast>
-      </div>
+      <app-forecast [city]="city" [days]="days"></app-forecast>
     </div>
   </div>
 </div>
