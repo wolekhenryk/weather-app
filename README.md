@@ -4,7 +4,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Website
 
-This app is available [here] (https://wolekhenryk.github.io/weather-app/).
+This app is available [here](https://wolekhenryk.github.io/weather-app/).
 
 ## Development server
 
