@@ -31,35 +31,56 @@
         </ul>
       </div>
 
-      <!-- Add d-flex and align-items-stretch to the row -->
-      <div class="row d-flex justify-content-center align-items-stretch">
-        <div class="col-md-6">
-          <div class="card shadow h-100" *ngIf="weather">
-            <!-- Add h-100 to the card to stretch it -->
-            <div class="card-body text-center">
-              <h2 class="card-title text-primary">Temperature</h2>
-              <div>
-                <h3 class="card-text">{{ weather?.current?.temp_c }} °C</h3>
-                <p class="card-text">
-                  <strong>Feels like</strong>
-                  {{ weather?.current?.feelslike_c }} °C
-                </p>
-              </div>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-md-6 mb-2">
+          <app-generic-card
+            [title]="'Place'"
+            [mainValue]="
+              weather?.location?.name + ', ' + weather?.location?.country
+            "
+            [subTitle]="'Region'"
+            [subValue]="weather?.location?.region"
+          />
         </div>
-        <div class="col-md-6">
-          <div class="card shadow h-100" *ngIf="weather">
-            <!-- Add h-100 to the card to stretch it -->
-            <div class="card-body text-center">
-              <h2 class="card-title text-primary">Condition</h2>
-              <img
-                [src]="weather?.current?.condition?.icon"
-                [alt]="weather?.current?.condition?.text"
-                class="img-fluid mb-3"
-              />
-            </div>
-          </div>
+
+        <div class="col-md-6 mb-2">
+          <app-generic-card
+            [title]="'Time and date'"
+            [mainValue]="weather?.location?.localtime"
+            [subTitle]="'Timezone'"
+            [subValue]="weather?.location?.tz_id"
+          />
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <app-generic-card
+            [title]="'Temperature'"
+            [mainValue]="weather?.current?.temp_c + ' °C'"
+            [subTitle]="'Feels like'"
+            [subValue]="weather?.current?.feelslike_c + ' °C'"
+          />
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <app-condition-card [imgSrc]="weather?.current.condition.icon" />
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <app-generic-card
+            [title]="'Wind'"
+            [mainValue]="weather?.current.wind_kph + ' km/h'"
+            [subTitle]="'Direction'"
+            [subValue]="weather?.current.wind_dir"
+          />
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <app-generic-card
+            [title]="'Pressure and rain'"
+            [mainValue]="weather?.current.pressure_mb + ' hPa'"
+            [subTitle]="'Precipitation'"
+            [subValue]="weather?.current.precip_mm + ' mm'"
+          />
         </div>
       </div>
       <app-forecast [city]="city" [days]="days"></app-forecast>

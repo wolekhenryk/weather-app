@@ -3,11 +3,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WeatherService } from '../weather.service';
 import { ForecastComponent } from '../forecast/forecast.component';
+import { ConditionCardComponent } from '../condition-card/condition-card.component';
+import { GenericCardComponent } from '../../generic-card/generic-card.component';
 
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [CommonModule, FormsModule, ForecastComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ForecastComponent,
+    ConditionCardComponent,
+    GenericCardComponent,
+  ],
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css'],
 })

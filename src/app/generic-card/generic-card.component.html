@@ -1,0 +1,16 @@
+<div class="card shadow h-100">
+  <div class="card-body text-center">
+    <h2 class="card-title text-primary">
+      {{ title }}
+    </h2>
+    <div>
+      <h3 class="card-text mb-3">{{ mainValue }}</h3>
+      <p class="card-text" *ngIf="subValue">
+        <strong>
+          {{ subTitle }}
+        </strong>
+        {{ subValue }}
+      </p>
+    </div>
+  </div>
+</div>
