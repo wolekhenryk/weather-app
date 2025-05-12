@@ -12,7 +12,7 @@ export class WeatherService {
   private baseAutocompleteUrl: string =
     'https://api.weatherapi.com/v1/search.json';
   private baseForecastUrl: string =
-    'http://api.weatherapi.com/v1/forecast.json';
+    'https://api.weatherapi.com/v1/forecast.json';
   constructor(private http: HttpClient) {}
 
   getWeather(city: string): Observable<any> {
